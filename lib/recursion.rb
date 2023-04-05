@@ -18,4 +18,14 @@ class Recursion
     sequence = fibs_rec(number - 1)
     sequence.push(sequence[-1] + sequence[-2])
   end
+
+  def merge_sort(array)
+    return array if array.length < 2
+
+    left = merge_sort(array.slice!(0, array.length / 2))
+    right = merge_sort(array)
+    sorted = []
+    sorted.push left.first < right.first ? left.shift : right.shift until left.empty? || right.empty?
+    sorted + left + right
+  end
 end
